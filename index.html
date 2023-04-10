@@ -10,9 +10,11 @@
 </head>
 
 <body>
+    <div class="time"></div>
+    <div><a href = "./highscores.html">Highscores</a></div>
     <div class="start-screen">
         <h1> CLIMBING QUIZ CHALLENGE </h1>
-        <div>Try to answer the following questions about rock climbing to the best of your ability!
+        <div>Try to answer the following questions about rock climbing to the best of your ability withing the time limit!
         </div>
 
         <button class="start">Start!</button>
@@ -20,6 +22,14 @@
     <div class="questiondisplay hide">
         <h1 class="question-title"></h1>
         <div class="choices"></div>
+        <div class="wrong"></div>
+    </div>
+    <div class="initials hide">
+        <p>
+            Enter initials below; 
+        </p>
+        <input class = "input" id = "msg" type="text" maxlength="3"></input>
+        <button class="submit">Submit</button>
     </div>
 
 
