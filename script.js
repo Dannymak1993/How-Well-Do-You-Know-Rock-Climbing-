@@ -41,7 +41,6 @@ var questions = [
 ]
 
 function setTime() {
-    // Sets interval in variable
         timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = `Timer: ${secondsLeft}`;
@@ -87,7 +86,7 @@ function checkanswer() {
         }
 } else {
     secondsLeft = secondsLeft - 5;
-    wrong.textContent = "Wrong!";
+    wrong.textContent = "try again!";
 }
 }
 
@@ -105,37 +104,8 @@ function renderQuestion() {
 
 
 start.addEventListener("click", startQuiz);
-submit.addEventListener("click", saveInitials); 
-
-// function(event){
-//     event.preventDefault();
-
-//     if (input === "") {
-//         displayMessage("error", "no input detected");
-//     } else {
-//         displayMessage("success", "Registered successfully");
-// }
-
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+submit.addEventListener("click", saveInitials);
+submit.addEventListener("click", function (event) {
+    event.preventDefault();
+    input.value = '';
+}); 

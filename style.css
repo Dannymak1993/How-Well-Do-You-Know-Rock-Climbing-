@@ -13,28 +13,6 @@ text-align: center;
    width: 350px;
 }
 
-/* #msg {
-    visibility: hidden;
-    margin-top: 20px;
-    font-weight: 700;
-    height: 1.2em;
-    font-size: 1.2em;
-}
-
-#msg.success,
-#msg.error {
-    visibility: visible;
-}
-
-#msg.success {
-    color: #001b44;
-    ;
-}
-
-#msg.error {
-    color: #e6252c;
-} */
-
 button {
     background-color: #001b44;
     ;
@@ -50,4 +28,14 @@ button {
     transition-timing-function: linear;
     margin-top: 0.6em;
     justify-content: center;
+}
+
+.input {
+    height: 55px;
+    width: 200px;
+}
+
+.wrong {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
 }
