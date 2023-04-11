@@ -41,13 +41,13 @@ var questions = [
 ]
 
 function setTime() {
-        timerInterval = setInterval(function () {
+    timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = `Timer: ${secondsLeft}`;
 
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
-            sendMessage();
+            endQuiz();
         }
     }, 1000);
 }
@@ -59,13 +59,24 @@ function startQuiz() {
     setTime();
 }
 
-function saveInitials () {
-    let highScores = JSON.parse(localStorage.getItem("highScores"))||[];
-    let scoreObj = {
-        initials: input.value, score: secondsLeft
+function saveInitials() {
+    let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+
+    // Validate input
+    if (!input.value.trim()) {
+        alert("Invalid input! Please fill out your initials");
+        return;
     }
+
+    let scoreObj = {
+        initials: input.value,
+        score: secondsLeft,
+    };
     highScores.push(scoreObj);
-    localStorage.setItem("highScores",JSON.stringify(highScores))
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+
+    // Display success message
+    alert("Score Saved!");
 }
 
 function endQuiz () {
@@ -77,17 +88,22 @@ function endQuiz () {
 function checkanswer() {
     console.log(this.dataset.value);
     if (this.dataset.value === questions[currentQuestion].answer) {
-    wrong.textContent = "";
+        wrong.textContent = "";
         if (currentQuestion === questions.length - 1 || secondsLeft <= 0) {
             endQuiz();
         } else {
             currentQuestion++;
             renderQuestion();
         }
-} else {
-    secondsLeft = secondsLeft - 5;
-    wrong.textContent = "try again!";
-}
+    } else {
+        secondsLeft -= 5;
+        if (secondsLeft <= 0) {
+            secondsLeft = 0;
+            endQuiz();
+        } else {
+            wrong.textContent = "try again!";
+        }
+    }
 }
 
 function renderQuestion() {
@@ -101,7 +117,6 @@ function renderQuestion() {
         choiceEl.appendChild(button);
     }
 }
-
 
 start.addEventListener("click", startQuiz);
 submit.addEventListener("click", saveInitials);
