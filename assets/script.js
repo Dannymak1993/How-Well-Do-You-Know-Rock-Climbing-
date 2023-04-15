@@ -88,23 +88,24 @@ function endQuiz () {
 function checkanswer() {
     console.log(this.dataset.value);
     if (this.dataset.value === questions[currentQuestion].answer) {
-        wrong.textContent = "";
-        if (currentQuestion === questions.length - 1 || secondsLeft <= 0) {
-            endQuiz();
-        } else {
-            currentQuestion++;
-            renderQuestion();
-        }
+        wrong.textContent = "correct!";
     } else {
         secondsLeft -= 5;
         if (secondsLeft <= 0) {
             secondsLeft = 0;
             endQuiz();
         } else {
-            wrong.textContent = "try again!";
+            wrong.textContent = "wrong!";
         }
     }
+    currentQuestion++;
+    if (currentQuestion === questions.length || secondsLeft <= 0) {
+        endQuiz();
+    } else {
+        renderQuestion();
+    }
 }
+
 
 function renderQuestion() {
     questiontitle.textContent = questions[currentQuestion].question;
